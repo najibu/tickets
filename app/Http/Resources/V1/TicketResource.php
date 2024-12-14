@@ -16,15 +16,15 @@ class TicketResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'type' => 'ticket',
-            'id' => $this->id,
+            'type'       => 'ticket',
+            'id'         => $this->id,
             'attributes' => [
-                'title' => $this->title,
+                'title'       => $this->title,
                 'description' => $this->when(
                     $request->routeIs('tickets.show'),
                     $this->description
                 ),
-                'status' => $this->status,
+                'status'    => $this->status,
                 'createdAt' => $this->created_at,
                 'updatedAt' => $this->updated_at
             ],
@@ -32,15 +32,15 @@ class TicketResource extends JsonResource
                 'author' => [
                     'data' => [
                         'type' => 'user',
-                        'id' => $this->user_id
+                        'id'   => $this->user_id
                     ],
                     'links' => [
-                        ['self' => route('users.show', ['user' => $this->user_id])]
+                        ['self' => route('authors.show', ['author' => $this->user_id])]
                     ]
                 ]
             ],
-            'includes' => new UserResource($this->whenLoaded('user')),
-            'links' => [
+            'includes' => new UserResource($this->whenLoaded('author')),
+            'links'    => [
                 'self' => route('tickets.show', ['ticket' => $this->id])
             ]
         ];
