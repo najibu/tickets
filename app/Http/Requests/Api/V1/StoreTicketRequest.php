@@ -21,8 +21,23 @@ class StoreTicketRequest extends FormRequest
      */
     public function rules(): array
     {
+        $rules = [
+            'data.attributes.title'       => 'required|string',
+            'data.attributes.description' => 'required|string',
+            'data.attributes.status'      => 'required|string|in:open,closed,pending',
+        ];
+
+        if ($this->routeIs('ticket.store')) {
+            $rules['data.relationships.author.data.id'] = 'required|integer';
+        }
+
+        return $rules;
+    }
+
+    public function messages()
+    {
         return [
-            //
+            'data.attributes.status' => 'The data.attributes.status value is invalid. Please use open, pending, closed'
         ];
     }
 }
