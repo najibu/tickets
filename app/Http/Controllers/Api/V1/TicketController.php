@@ -73,13 +73,14 @@ class TicketController extends ApiController
      */
     public function destroy($ticket_id)
     {
+
         try {
             $ticket = Ticket::findOrFail($ticket_id);
             $ticket->delete();
 
             return $this->ok('Ticket successfully deleted');
         } catch (ModelNotFoundException $e) {
-            $this->error('Ticket cannot be found', 404);
+            return $this->error('Ticket cannot be found', 404);
         }
     }
 }
