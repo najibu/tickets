@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Ticket;
+use App\Policies\V1\TicketPolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,5 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::define('update', [TicketPolicy::class, 'update']);
     }
 }
