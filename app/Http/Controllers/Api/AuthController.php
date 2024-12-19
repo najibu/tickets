@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Sanctum\HasApiTokens;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginUserRequest;
+use App\Permissions\V1\Abilities;
 
 class AuthController extends Controller
 {
@@ -22,7 +23,7 @@ class AuthController extends Controller
        return $this->ok('Authenticated', [
         'token' => $user->createToken(
             'api-token',
-            ['*'],
+            Abilities::getAbilities($user),
             now()->addMonth()
             )->plainTextToken,
        ]);
@@ -31,7 +32,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
-        
+
         return $this->ok('Logged out');
     }
 
