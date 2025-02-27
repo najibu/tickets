@@ -14,20 +14,14 @@ class TicketPolicy
      */
     public function replace(User $user, Ticket $ticket): bool
     {
-        if ($user->tokenCan(Abilities::ReplaceTicket)) {
-            return true;
-        }
+        return $user->tokenCan(Abilities::ReplaceTicket);
 
-        return false;
     }
 
     public function store(User $user, Ticket $ticket): bool
     {
-        if ($user->tokenCan(Abilities::CreateTicket)) {
-            return true;
-        }
-
-        return false;
+        return $user->tokenCan(Abilities::CreateTicket)
+            || $user->tokenCan(Abilities::CreateOwnTicket);
     }
 
     /**
@@ -56,21 +50,5 @@ class TicketPolicy
         }
 
         return false;
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Ticket $ticket): bool
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Ticket $ticket): bool
-    {
-        //
     }
 }
