@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Traits;
 
 trait ApiResponses
@@ -13,15 +14,30 @@ trait ApiResponses
         return response()->json([
             'data' => $data,
             'message' => $message,
-            'status' => $statusCode,
+            'status' => $statusCode
         ], $statusCode);
     }
 
-    protected function error($message, $statusCode = 200)
+    protected function error($errors = [], $statusCode = null)
     {
+        if (is_string($errors)) {
+            return response()->json([
+                'message' => $errors,
+                'status' => $statusCode
+            ], $statusCode);
+        }
+
         return response()->json([
+            'errors' => $errors
+        ]);
+    }
+
+    protected function notAuthorized($message)
+    {
+        return $this->error([
+            'status' => 401,
             'message' => $message,
-            'status' => $statusCode,
-        ], $statusCode);
+            'source' => ''
+        ]);
     }
 }
