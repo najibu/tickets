@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests\Api\V1;
 
-use Illuminate\Foundation\Http\FormRequest;
-
 class ReplaceTicketRequest extends BaseTicketRequest
 {
     /**
@@ -22,9 +20,14 @@ class ReplaceTicketRequest extends BaseTicketRequest
     public function rules(): array
     {
         return [
+            'data' => 'required|array',
+            'data.attributes' => 'required|array',
             'data.attributes.title'       => 'required|string',
             'data.attributes.description' => 'required|string',
             'data.attributes.status'      => 'required|string|in:open,closed,pending',
+            'data.relationships' => 'required|array',
+            'data.relationships.author' => 'required|array',
+            'data.relationships.author.data' => 'required|array',
             'data.relationships.author.data.id' => 'required|integer'
         ];
 

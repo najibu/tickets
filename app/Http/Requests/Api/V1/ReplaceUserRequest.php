@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests\Api\V1;
 
-use Illuminate\Foundation\Http\FormRequest;
-
 class ReplaceUserRequest extends BaseUserRequest
 {
     /**
@@ -22,6 +20,8 @@ class ReplaceUserRequest extends BaseUserRequest
     public function rules(): array
     {
         $rules = [
+            'data' => 'required|array',
+            'data.attributes' => 'required|array',
             'data.attributes.name' => 'required|string',
             'data.attributes.email' => 'required|email',
             'data.attributes.isManager' => 'required|boolean',

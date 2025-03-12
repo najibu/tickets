@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\V1;
 
 use App\Permissions\V1\Abilities;
+use Illuminate\Support\Facades\Auth;
 
 class StoreTicketRequest extends BaseTicketRequest
 {
@@ -21,18 +22,29 @@ class StoreTicketRequest extends BaseTicketRequest
      */
     public function rules(): array
     {
-        $authorIdAttr = $this->routeIs("tickets.store") ? "data.relationships.author.data.id" : "author";
+        $isTicketsController = $this->routeIs('tickets.store');
+        $authorIdAttr = $isTicketsController ? 'data.relationships.author.data.id' : 'author';
+        $user = Auth::user();
+        $authorRule = 'required|integer|exists:users,id';
+
         $rules = [
-            'data.attributes.title'       => 'required|string',
+            'data' => 'required|array',
+            'data.attributes' => 'required|array',
+            'data.attributes.title' => 'required|string',
             'data.attributes.description' => 'required|string',
-            'data.attributes.status'      => 'required|string|in:open,closed,pending',
-            $authorIdAttr => 'required|integer|exists:users,id',
+            'data.attributes.status' => 'required|string|in:A,C,H,X',
         ];
 
-        $user = $this->user();
+        if ($isTicketsController) {
+            $rules['data.relationships'] = 'required|array';
+            $rules['data.relationships.author'] = 'required|array';
+            $rules['data.relationships.author.data'] = 'required|array';
+        }
 
-        if ($user->tokenCan(Abilities::CreateOwnTicket)) {
-            $rules[$authorIdAttr] .= '|size:' . $user->id;
+        $rules[$authorIdAttr] = $authorRule . '|size:' . $user->id;
+
+        if ($user->tokenCan(Abilities::CreateTicket)) {
+            $rules[$authorIdAttr] = $authorRule;
         }
 
         return $rules;
@@ -40,10 +52,43 @@ class StoreTicketRequest extends BaseTicketRequest
 
     protected function prepareForValidation()
     {
-        if ($this->routeIs("authors.tickets.store")) {
+        if ($this->routeIs('authors.tickets.store')) {
             $this->merge([
-                "author"=> $this->route("author"),
+                'author' => $this->route('author')
             ]);
         }
+    }
+
+    public function bodyParameters()
+    {
+        $documentation = [
+            'data.attributes.title' => [
+                'description' => "The ticket's title (method)",
+                'example' => 'No-example'
+            ],
+            'data.attributes.description' => [
+                'description' => "The ticket's description",
+                'example' => 'No-example',
+            ],
+            'data.attributes.status' => [
+                'description' => "The ticket's status",
+                'example' => 'No-example',
+            ],
+        ];
+
+        if ($this->routeIs('tickets.store')) {
+            $documentation['data.relationships.author.data.id'] = [
+                'description' => 'The author assigned to the ticket.',
+                'example' => 'No-example'
+            ];
+        } else {
+            $documentation['author'] = [
+                'description' => 'The author assigned to the ticket.',
+                'example' => 'No-example'
+            ];
+        }
+
+        return $documentation;
+
     }
 }

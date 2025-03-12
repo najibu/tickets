@@ -1,0 +1,100 @@
+name: 'Showing Authors'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/authors
+    metadata:
+      groupName: 'Showing Authors'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get authors.'
+      description: 'Retrieves all users that created a ticket.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"type":"user","id":1,"attributes":{"name":"Tremayne Green","email":"althea.gaylord@example.org","isManager":null,"emailVerifiedAt":"2024-07-24T15:25:30.000000Z","createdAt":"2024-07-24T15:25:30.000000Z","udpatedAt":"2024-07-24T15:25:30.000000Z"},"links":{"self":"http:\/\/tickets.test\/api\/v1\/authors\/1"}},{"type":"user","id":11,"attributes":{"name":"Bertha Blick","email":"mortimer.considine@example.org","isManager":null,"emailVerifiedAt":"2024-07-24T15:25:41.000000Z","createdAt":"2024-07-24T15:25:42.000000Z","udpatedAt":"2024-07-24T15:25:42.000000Z"},"links":{"self":"http:\/\/tickets.test\/api\/v1\/authors\/11"}},{"type":"user","id":12,"attributes":{"name":"Mrs. Roslyn Stanton V","email":"hbeer@example.net","isManager":null,"emailVerifiedAt":"2024-07-24T15:25:42.000000Z","createdAt":"2024-07-24T15:25:42.000000Z","udpatedAt":"2024-07-24T15:25:42.000000Z"},"links":{"self":"http:\/\/tickets.test\/api\/v1\/authors\/12"}},{"type":"user","id":13,"attributes":{"name":"Ms. Shakira Murazik","email":"isai86@example.net","isManager":null,"emailVerifiedAt":"2024-07-24T15:25:42.000000Z","createdAt":"2024-07-24T15:25:42.000000Z","udpatedAt":"2024-07-24T15:25:42.000000Z"},"links":{"self":"http:\/\/tickets.test\/api\/v1\/authors\/13"}},{"type":"user","id":14,"attributes":{"name":"Leta Schneider DDS","email":"hyatt.eldridge@example.org","isManager":null,"emailVerifiedAt":"2024-07-24T15:25:42.000000Z","createdAt":"2024-07-24T15:25:42.000000Z","udpatedAt":"2024-07-24T15:25:42.000000Z"},"links":{"self":"http:\/\/tickets.test\/api\/v1\/authors\/14"}},{"type":"user","id":15,"attributes":{"name":"Erwin Haag","email":"kozey.abagail@example.net","isManager":null,"emailVerifiedAt":"2024-07-24T15:25:42.000000Z","createdAt":"2024-07-24T15:25:42.000000Z","udpatedAt":"2024-07-24T15:25:42.000000Z"},"links":{"self":"http:\/\/tickets.test\/api\/v1\/authors\/15"}},{"type":"user","id":16,"attributes":{"name":"Mr. Prince Lowe","email":"amya62@example.com","isManager":null,"emailVerifiedAt":"2024-07-24T15:25:42.000000Z","createdAt":"2024-07-24T15:25:42.000000Z","udpatedAt":"2024-07-24T15:25:42.000000Z"},"links":{"self":"http:\/\/tickets.test\/api\/v1\/authors\/16"}},{"type":"user","id":17,"attributes":{"name":"Garrett Buckridge","email":"demetrius56@example.com","isManager":null,"emailVerifiedAt":"2024-07-24T15:25:42.000000Z","createdAt":"2024-07-24T15:25:42.000000Z","udpatedAt":"2024-07-24T15:25:42.000000Z"},"links":{"self":"http:\/\/tickets.test\/api\/v1\/authors\/17"}},{"type":"user","id":18,"attributes":{"name":"Miss Lurline Mueller","email":"emclaughlin@example.com","isManager":null,"emailVerifiedAt":"2024-07-24T15:25:42.000000Z","createdAt":"2024-07-24T15:25:42.000000Z","udpatedAt":"2024-07-24T15:25:42.000000Z"},"links":{"self":"http:\/\/tickets.test\/api\/v1\/authors\/18"}},{"type":"user","id":19,"attributes":{"name":"Prof. Ruthie Buckridge III","email":"lillie.smitham@example.org","isManager":null,"emailVerifiedAt":"2024-07-24T15:25:42.000000Z","createdAt":"2024-07-24T15:25:42.000000Z","udpatedAt":"2024-07-24T15:25:42.000000Z"},"links":{"self":"http:\/\/tickets.test\/api\/v1\/authors\/19"}},{"type":"user","id":20,"attributes":{"name":"Prof. Marjorie Bosco III","email":"dernser@example.org","isManager":null,"emailVerifiedAt":"2024-07-24T15:25:42.000000Z","createdAt":"2024-07-24T15:25:42.000000Z","udpatedAt":"2024-07-24T15:25:42.000000Z"},"links":{"self":"http:\/\/tickets.test\/api\/v1\/authors\/20"}}],"links":{"first":"http:\/\/tickets.test\/api\/v1\/authors?page=1","last":"http:\/\/tickets.test\/api\/v1\/authors?page=7","prev":null,"next":"http:\/\/tickets.test\/api\/v1\/authors?page=2"},"meta":{"current_page":1,"from":1,"last_page":7,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/tickets.test\/api\/v1\/authors?page=1","label":"1","active":true},{"url":"http:\/\/tickets.test\/api\/v1\/authors?page=2","label":"2","active":false},{"url":"http:\/\/tickets.test\/api\/v1\/authors?page=3","label":"3","active":false},{"url":"http:\/\/tickets.test\/api\/v1\/authors?page=4","label":"4","active":false},{"url":"http:\/\/tickets.test\/api\/v1\/authors?page=5","label":"5","active":false},{"url":"http:\/\/tickets.test\/api\/v1\/authors?page=6","label":"6","active":false},{"url":"http:\/\/tickets.test\/api\/v1\/authors?page=7","label":"7","active":false},{"url":"http:\/\/tickets.test\/api\/v1\/authors?page=2","label":"Next &raquo;","active":false}],"path":"http:\/\/tickets.test\/api\/v1\/authors","per_page":15,"to":11,"total":102}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 4|6XptVi8BRE4X7VsPwzDnLGJNCU2icUgM8blXzyJO8daa2173'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/authors/{id}'
+    metadata:
+      groupName: 'Showing Authors'
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get an author.'
+      description: 'Retrieves all users that created a ticket.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the author.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '[{"type":"UrlGenerationException","status":0,"message":"Missing required parameter for [Route: authors.show] [URI: api\/v1\/authors\/{author}] [Missing parameter: author].","source":"Line: 35: \/Users\/najibu\/Herd\/tickets\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Exceptions\/UrlGenerationException.php"}]'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 4|6XptVi8BRE4X7VsPwzDnLGJNCU2icUgM8blXzyJO8daa2173'
+    controller: null
+    method: null
+    route: null
+    custom: []
